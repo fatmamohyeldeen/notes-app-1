@@ -201,13 +201,18 @@ yargs.command({
             describe:'This is body description in add command',
             type:'string',
            demandOption:true
+        },
+        degrees:{
+            describe:'This is body description in add command',
+            type:'array',
+           demandOption:true
         }
     },
 
     // logic that will be excuted when i call this command
     handler:()=>{
        // console.log(yargs.argv.title)
-        notes.addNote(yargs.argv.title,yargs.argv.body)
+        notes.addNote(yargs.argv.title,yargs.argv.body,yargs.argv.degrees)
     }
 })
 
@@ -254,6 +259,25 @@ yargs.command({
     }
 
 })
+
+yargs.command({
+    command:'update',
+    builder:{
+        title:{
+            describe:'This is title description in add command',
+            type:'string',
+            demandOption:true // Obligatory
+        },
+        body:{
+            describe:'This is body description in add command',
+            type:'string',
+           demandOption:true
+        },
+    },
+handler:()=>{
+    notes.updateNote(yargs.argv.title,yargs.argv.body)
+
+}})
 
 
 // console.log(yargs.argv)

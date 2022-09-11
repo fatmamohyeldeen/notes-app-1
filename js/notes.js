@@ -95,7 +95,7 @@ const saveNotes = (data) =>{
 // }
 ///////////////////////////////////////////////////////////////////////
 
-const addNote = (title,body) =>{
+const addNote = (title,body,deg) =>{
     const notes = loadNotes()
     const duplicateNote = notes.find((el)=>{
         /**
@@ -123,9 +123,13 @@ const addNote = (title,body) =>{
      * }
      */
     if(!duplicateNote){
+        total = 0
+        deg.forEach((el)=> total+=el)
         notes.push({
             title,
-            body
+            body,
+            deg,
+            total
         })
         saveNotes(notes)
         console.log('Saved')
@@ -217,10 +221,27 @@ const listNote = () =>{
         console.log(el.body)
     })
 }
+
+const updateNote = (title,body)=>{
+const notes = loadNotes()
+const index = notes.findIndex((el)=>{
+    /**
+     * note1 === aa F
+     * note5 === aa F
+     * aa === aa T
+     */
+    return el.title === title
+})
+console.log(index)
+notes[index].body = body
+saveNotes(notes)
+
+}
 module.exports = {
     addNote,  //addNote:addNote
     removeNotes,
     readNote,
-    listNote
+    listNote,
+    updateNote
 }
 
