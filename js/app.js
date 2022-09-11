@@ -215,6 +215,7 @@ yargs.command({
         notes.addNote(yargs.argv.title,yargs.argv.body,yargs.argv.degrees)
     }
 })
+console.log('hiiiiiiiiiiiiiiiiiiiiiiii')
 
 // delete
 // builder --> title
